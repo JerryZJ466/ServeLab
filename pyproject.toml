@@ -1,0 +1,19 @@
+[project]
+name = "servelab"
+version = "0.0.0"
+description = "A production-minded lab for learning LLM serving infrastructure."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "pytest>=9.1,<10",
+]
+
+[tool.pytest]
+minversion = "9.1"
+addopts = ["-ra", "--strict-config", "--strict-markers"]
+testpaths = ["tests"]
+strict = true

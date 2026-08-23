@@ -2,7 +2,7 @@
 
 ServeLab is a production-minded lab for learning and building LLM serving infrastructure. It starts as a small, observable gateway in front of one inference backend and grows toward multi-worker routing, SLO-aware control, trace replay, and reproducible systems experiments.
 
-> Status: planning / pre-v0.1. The repository currently defines the scope and engineering contracts. Implementation will land incrementally with tests and benchmark evidence.
+> Status: Phase A environment baseline / pre-v0.1. The repository currently defines the scope and engineering contracts. Implementation will land incrementally with tests and benchmark evidence.
 
 ## Why ServeLab?
 
@@ -98,9 +98,24 @@ docs/
 results/               # small curated reports; raw local runs stay ignored
 ```
 
+## Development baseline
+
+The Phase A baseline pins the project interpreter and verifies WSL2, Git, Python, pytest, and GPU visibility without installing a serving engine or downloading a model.
+
+Run these commands in Ubuntu/WSL:
+
+```bash
+cd /home/jerry/code/ServeLab
+uv sync --locked
+uv run --locked pytest
+bash scripts/smoke.sh
+```
+
+See [the recorded environment](docs/environment.md) for observed versions, command meanings, and Phase A exit criteria.
+
 ## Current next step
 
-The first implementation milestone is the mock-backed vertical slice: accept one request, apply admission control, stream or return a response, record its complete lifecycle, and verify cancellation and timeout behavior in tests. The real vLLM adapter follows only after that path is stable.
+After Phase A passes, the next atomic learning task is a small async Python lab covering an async generator, timeout, cancellation, simulated client interruption, and `finally` cleanup. The mock-backed vertical slice follows after those lifecycle mechanics are understood and tested. The real vLLM adapter follows only after the mock path is stable.
 
 ## License
 
