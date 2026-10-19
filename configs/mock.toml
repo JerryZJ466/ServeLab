@@ -1,0 +1,8 @@
+# Local CPU-only development; no model download or GPU required.
+backend = "mock"
+model = "servelab-mock"
+max_inflight = 2
+max_queue = 8
+queue_timeout = 2.0
+request_timeout = 10.0
+mock_token_delay = 0.01

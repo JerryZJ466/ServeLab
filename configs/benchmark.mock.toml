@@ -1,0 +1,16 @@
+# Synthetic tool rehearsal only. Not a real-model performance benchmark.
+base_url = "http://127.0.0.1:8000"
+model = "servelab-mock"
+concurrency = [1, 4, 8]
+repeats = 3
+requests_per_run = 24
+warmup_requests = 2
+request_timeout = 30.0
+max_tokens = 32
+temperature = 0.0
+stream = true
+prompts = [
+  "Explain a queue in one sentence.",
+  "Why should a service have a request deadline?",
+  "Describe the difference between latency and throughput.",
+]

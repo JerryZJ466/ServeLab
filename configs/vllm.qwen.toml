@@ -1,0 +1,8 @@
+# Planned cloud configuration; not yet validated against a real engine.
+backend = "vllm"
+model = "servelab-qwen"
+upstream_base_url = "http://127.0.0.1:8001"
+max_inflight = 8
+max_queue = 16
+queue_timeout = 15.0
+request_timeout = 120.0

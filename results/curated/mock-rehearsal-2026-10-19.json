@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "run_id": "acc1355ae3a04a569c8d4d9c805e2051",
+  "gateway": {
+    "backend": "mock",
+    "model": "servelab-mock",
+    "max_inflight": 2,
+    "max_queue": 8,
+    "queue_timeout": 2.0,
+    "request_timeout": 10.0,
+    "mock_token_delay": 0.01,
+    "token_usage": "synthetic"
+  },
+  "git": {
+    "commit": "550a55400b5f58979154a9a94eca4720041baf9e",
+    "dirty": true
+  },
+  "warmup_samples_excluded": 18,
+  "percentile_method": "linear interpolation at (n-1)*p; successful samples only",
+  "warning": "Synthetic mock measurements, not model/GPU performance.",
+  "groups": [
+    {
+      "group_id": "c1-r1",
+      "concurrency": 1,
+      "repeat": 1,
+      "expected_samples": 24,
+      "duration_seconds": 1.0402563510006075,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.04327613354162926,
+        "p50": 0.04312977100016724,
+        "p95": 0.04450747130049421,
+        "p99": 0.04475046089977695
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.012355271958237305,
+        "p50": 0.01232981249995646,
+        "p95": 0.01280991554999673,
+        "p99": 0.013428457249783605
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.01030695386113065,
+        "p50": 0.010264970666715573,
+        "p95": 0.010605562016432183,
+        "p99": 0.010713386583380877
+      },
+      "completed_requests_per_second": 23.07123621683708,
+      "completed_tokens_per_second": 92.28494486734832,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 3.2554070154825844e-05,
+        "p50": 3.039836883544922e-05,
+        "p95": 4.1031837463378905e-05,
+        "p99": 4.308223724365234e-05
+      }
+    },
+    {
+      "group_id": "c1-r2",
+      "concurrency": 1,
+      "repeat": 2,
+      "expected_samples": 24,
+      "duration_seconds": 1.0442840380001144,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.043443193125047706,
+        "p50": 0.043366728499677265,
+        "p95": 0.044290417949832774,
+        "p99": 0.04461258721962622
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.012396433708355895,
+        "p50": 0.012282701999538403,
+        "p95": 0.012959787750241957,
+        "p99": 0.013012857140320194
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010348919805563937,
+        "p50": 0.0103379260000717,
+        "p95": 0.010514427166663154,
+        "p99": 0.010568748789819438
+      },
+      "completed_requests_per_second": 22.982253033343188,
+      "completed_tokens_per_second": 91.92901213337275,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 3.838539123535156e-05,
+        "p50": 3.361701965332031e-05,
+        "p95": 4.916191101074216e-05,
+        "p99": 0.00011233806610107418
+      }
+    },
+    {
+      "group_id": "c1-r3",
+      "concurrency": 1,
+      "repeat": 3,
+      "expected_samples": 24,
+      "duration_seconds": 1.046273791999738,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.04352335070840733,
+        "p50": 0.04352861000006669,
+        "p95": 0.04406094439946173,
+        "p99": 0.04434288944981745
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.01244868891672013,
+        "p50": 0.012460083500172914,
+        "p95": 0.01272110654995231,
+        "p99": 0.01290394373010713
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010358220597229066,
+        "p50": 0.010345511166633514,
+        "p95": 0.010570789183217735,
+        "p99": 0.010696115920018201
+      },
+      "completed_requests_per_second": 22.93854647178815,
+      "completed_tokens_per_second": 91.7541858871526,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 3.4699837366739907e-05,
+        "p50": 3.2782554626464844e-05,
+        "p95": 4.658699035644531e-05,
+        "p99": 5.4991245269775385e-05
+      }
+    },
+    {
+      "group_id": "c4-r1",
+      "concurrency": 4,
+      "repeat": 1,
+      "expected_samples": 24,
+      "duration_seconds": 0.5072973099995579,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.0808535869584072,
+        "p50": 0.08349900699977297,
+        "p95": 0.08725849954989826,
+        "p99": 0.08748738386004334
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.049512077375046225,
+        "p50": 0.052173545000187005,
+        "p95": 0.05580500080018282,
+        "p99": 0.056439042450019766
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010447169861120327,
+        "p50": 0.010439761666778697,
+        "p95": 0.010689078966621916,
+        "p99": 0.010751727656621975
+      },
+      "completed_requests_per_second": 47.30953530981845,
+      "completed_tokens_per_second": 189.2381412392738,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.03567363818486532,
+        "p50": 0.038457512855529785,
+        "p95": 0.041022193431854245,
+        "p99": 0.041318771839141843
+      }
+    },
+    {
+      "group_id": "c4-r2",
+      "concurrency": 4,
+      "repeat": 2,
+      "expected_samples": 24,
+      "duration_seconds": 0.5049898919996849,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.08047856941664122,
+        "p50": 0.08357766749986695,
+        "p95": 0.08605706635016759,
+        "p99": 0.08639491594058199
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.04921815508328109,
+        "p50": 0.052279629000167915,
+        "p95": 0.05459741415015742,
+        "p99": 0.05518466628984243
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010420138111120044,
+        "p50": 0.010416490333227557,
+        "p95": 0.010565529183380325,
+        "p99": 0.010671361433278435
+      },
+      "completed_requests_per_second": 47.525703742234455,
+      "completed_tokens_per_second": 190.10281496893782,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.03549320499102274,
+        "p50": 0.03841745853424072,
+        "p95": 0.04090702533721923,
+        "p99": 0.04121808290481568
+      }
+    },
+    {
+      "group_id": "c4-r3",
+      "concurrency": 4,
+      "repeat": 3,
+      "expected_samples": 24,
+      "duration_seconds": 0.5049227830004384,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.08044593124986932,
+        "p50": 0.08304639049993057,
+        "p95": 0.08655021144977582,
+        "p99": 0.08710157870942567
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.048960109374888816,
+        "p50": 0.05158925849991647,
+        "p95": 0.05514832734952506,
+        "p99": 0.05545117037953787
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010495273958326834,
+        "p50": 0.010489884500051025,
+        "p95": 0.010762974916648696,
+        "p99": 0.010805053840009956
+      },
+      "completed_requests_per_second": 47.5320203564258,
+      "completed_tokens_per_second": 190.1280814257032,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.03557392954826355,
+        "p50": 0.03833973407745361,
+        "p95": 0.041083443164825435,
+        "p99": 0.04139667272567749
+      }
+    },
+    {
+      "group_id": "c8-r1",
+      "concurrency": 8,
+      "repeat": 1,
+      "expected_samples": 24,
+      "duration_seconds": 0.5065131860001202,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.14744616699980875,
+        "p50": 0.1667420129997481,
+        "p95": 0.1699205585495747,
+        "p99": 0.17138509366994184
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.11633751420826381,
+        "p50": 0.1356425244998718,
+        "p95": 0.13887712929981716,
+        "p99": 0.13978051211945966
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010369550930514984,
+        "p50": 0.01035227549997823,
+        "p95": 0.010587050833510147,
+        "p99": 0.010596764976774769
+      },
+      "completed_requests_per_second": 47.38277435485027,
+      "completed_tokens_per_second": 189.53109741940108,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.10212587316830952,
+        "p50": 0.12179851531982422,
+        "p95": 0.12354265451431275,
+        "p99": 0.12370865821838378
+      }
+    },
+    {
+      "group_id": "c8-r2",
+      "concurrency": 8,
+      "repeat": 2,
+      "expected_samples": 24,
+      "duration_seconds": 0.5065709239997886,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.14740481062494837,
+        "p50": 0.16634524299979603,
+        "p95": 0.1694658525001614,
+        "p99": 0.17015018670032986
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.11633464141668053,
+        "p50": 0.13503146150060275,
+        "p95": 0.13903584205031622,
+        "p99": 0.13926351449017602
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010356723069422615,
+        "p50": 0.010337285833278049,
+        "p95": 0.01055321466648517,
+        "p99": 0.01056190485655558
+      },
+      "completed_requests_per_second": 47.37737375548624,
+      "completed_tokens_per_second": 189.50949502194496,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.10189348459243774,
+        "p50": 0.12132561206817627,
+        "p95": 0.1238741159439087,
+        "p99": 0.12400908946990967
+      }
+    },
+    {
+      "group_id": "c8-r3",
+      "concurrency": 8,
+      "repeat": 3,
+      "expected_samples": 24,
+      "duration_seconds": 0.504977023999345,
+      "complete": true,
+      "samples": 24,
+      "outcomes": {
+        "COMPLETED": 24
+      },
+      "errors": {},
+      "error_rate": 0.0,
+      "e2e_seconds": {
+        "samples": 24,
+        "mean": 0.1469191108750465,
+        "p50": 0.16485743349994664,
+        "p95": 0.1708569721002277,
+        "p99": 0.17159012857999187
+      },
+      "ttft_seconds": {
+        "samples": 24,
+        "mean": 0.11574615587502042,
+        "p50": 0.13362815350001256,
+        "p95": 0.13974885574989457,
+        "p99": 0.14037150540020776
+      },
+      "tpot_seconds": {
+        "samples": 24,
+        "mean": 0.010390985000008691,
+        "p50": 0.010373430499991326,
+        "p95": 0.010532731366902226,
+        "p99": 0.010614776093525506
+      },
+      "completed_requests_per_second": 47.52691480876392,
+      "completed_tokens_per_second": 190.10765923505568,
+      "gateway_log_matches": 24,
+      "gateway_admission_wait_seconds": {
+        "samples": 24,
+        "mean": 0.1015959084033966,
+        "p50": 0.12054002285003662,
+        "p95": 0.12443524599075317,
+        "p99": 0.1247193956375122
+      }
+    }
+  ]
+}

@@ -2,7 +2,58 @@
 
 ServeLab is a production-minded lab for learning and building LLM serving infrastructure. It starts as a small, observable gateway in front of one inference backend and grows toward multi-worker routing, SLO-aware control, trace replay, and reproducible systems experiments.
 
-> Status: Phase A environment baseline / pre-v0.1. The repository currently defines the scope and engineering contracts. Implementation will land incrementally with tests and benchmark evidence.
+> Status: local integration and benchmark tooling / pre-v0.1. The gateway, vLLM HTTP adapter, bounded admission, lifecycle handling, logs/metrics, and closed-loop benchmark/report tools are implemented and locally tested. Real vLLM/model compatibility, GPU cancellation behavior, cloud measurements, remote CI, and release remain unverified. Mock results are not model-inference performance results.
+
+## Run locally (no GPU)
+
+In Ubuntu/WSL or Linux, from the repository root:
+
+```bash
+uv sync --locked
+uv run --locked pytest -q
+uv run --locked python -m servelab.app --config configs/mock.toml
+```
+
+The server binds to `127.0.0.1:8000`. In a second Ubuntu/WSL terminal:
+
+```bash
+curl -N http://127.0.0.1:8000/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"servelab-mock","messages":[{"role":"user","content":"Hello"}],"stream":true}'
+```
+
+Set `"stream":false` for a JSON response. `/healthz`, `/v1/models`, and `/metrics` are also available.
+The mock always returns fixed text and synthetic token usage; it does not run an LLM.
+Use one process only. This lab has no public-facing authentication or multi-worker coordination.
+
+See [local quickstart and API contract](docs/local-development.md),
+[current verification evidence](docs/verification/mock-gateway.md), and the
+[local-first delivery plan](docs/v0.1-execution-plan.md).
+
+## Rehearse benchmarks locally (no GPU)
+
+In Ubuntu/WSL or Linux:
+
+```bash
+bash scripts/check.sh
+uv run --locked python -m servelab.benchmark.rehearsal
+```
+
+The rehearsal starts its own loopback mock server, runs concurrency 1/4/8 with three
+repetitions, excludes warm-up from statistics, saves raw rows and logs, builds an offline
+report, and stops its server. Results go to a new directory under ignored `results/raw/`.
+No cloud provisioning or model download occurs. See [benchmark usage](docs/benchmarking.md)
+and [local integration evidence](docs/verification/local-integration.md).
+
+### Local tool rehearsal — synthetic, not GPU performance
+
+![CPU mock rehearsal: throughput plateaus while latency rises with client concurrency](docs/assets/mock-rehearsal/benchmark.png)
+
+This actual local run completed 216 measured requests with no failures; 18 warm-ups were
+excluded. With only two active mock slots, concurrency 4 to 8 adds waiting without meaningful
+throughput gain. Lines average per-repeat summaries, not pooled latency percentiles.
+See the [curated report, reproduction command and limitations](results/curated/README.md).
+Real-model figures will be added only after the cloud experiment.
 
 ## Why ServeLab?
 
@@ -32,7 +83,7 @@ V0.1 is intentionally narrow: one process, one real backend, and a complete requ
 
 Out of scope for V0.1: multi-worker scheduling, SGLang, Kubernetes, Redis, autoscaling, custom CUDA/Triton kernels, and prefill/decode disaggregation.
 
-## Planned architecture
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -80,7 +131,7 @@ See [the detailed roadmap](docs/roadmap.md), [architecture contracts](docs/archi
 4. Stable interfaces, replaceable policies.
 5. Negative results are still results when the experiment is sound.
 
-## Planned repository layout
+## Repository layout (V0.1 target)
 
 ```text
 servelab/
@@ -89,7 +140,7 @@ servelab/
   core/                # request context, state, admission, routing
   backends/            # adapter interface, mock, vLLM HTTP adapter
   observability/       # structured logs and Prometheus metrics
-  benchmark/           # workload runner, schemas, offline reports
+  benchmark/           # closed-loop runner, schemas, offline reports, CPU rehearsal
 tests/
   unit/
   integration/
@@ -100,7 +151,7 @@ results/               # small curated reports; raw local runs stay ignored
 
 ## Development baseline
 
-The Phase A baseline pins the project interpreter and verifies WSL2, Git, Python, pytest, and GPU visibility without installing a serving engine or downloading a model.
+The historical Phase A baseline pins the project interpreter and verifies WSL2, Git, Python, pytest, and GPU visibility. The gateway now adds lightweight CPU-only dependencies; no serving engine or model is installed locally.
 
 Run these commands in Ubuntu/WSL:
 
@@ -115,7 +166,16 @@ See [the recorded environment](docs/environment.md) for observed versions, comma
 
 ## Current next step
 
-After Phase A passes, the next atomic learning task is a small async Python lab covering an async generator, timeout, cancellation, simulated client interruption, and `finally` cleanup. The mock-backed vertical slice follows after those lifecycle mechanics are understood and tested. The real vLLM adapter follows only after the mock path is stable.
+Review the local results and prepare a pinned engine/model/container combination and rental budget.
+The [Vast.ai runbook](docs/vastai-runbook.md) now proposes a fixed Qwen/vLLM stack, a USD 5
+spending ceiling, offer-selection limits, acceptance checks and result-export/cleanup gates.
+After explicit approval, rent one GPU, validate the adapter against real vLLM, verify engine-side
+cancellation, retain repeated measurements, and prepare the `v0.1.0` release. The adapter uses
+HTTP and does not require installing vLLM/PyTorch on the laptop. Protocol fixture success is
+not real-engine compatibility evidence.
+
+The [V0.1 execution plan](docs/v0.1-execution-plan.md) defines delivery and release gates.
+The [asynchronous waiting exercise](docs/labs/01-async-wait.md) remains optional background, not a prerequisite.
 
 ## License
 

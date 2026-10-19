@@ -2,6 +2,10 @@
 
 The roadmap is evidence-driven: each version must leave behind runnable code, tests, raw measurements, and a concise explanation of what was learned.
 
+Current delivery commitment (2026-10-19): finish V0.1 with local CPU development followed
+by one cloud GPU validation stage. Later versions below are optional directions, not active
+work. See [the updated execution plan](v0.1-execution-plan.md).
+
 ## V0.1 — single-backend serving loop
 
 Goal: make one request lifecycle correct and observable before adding distributed complexity.

@@ -1,0 +1,11 @@
+# Template only. This does NOT install an engine, download a model, or rent a GPU.
+# Match this alias to vLLM's --served-model-name when preparing cloud validation.
+backend = "vllm"
+model = "served-model"
+upstream_base_url = "http://127.0.0.1:8001"
+# Optional: name of an environment variable, never the API key itself.
+# upstream_api_key_env = "SERVELAB_UPSTREAM_API_KEY"
+max_inflight = 8
+max_queue = 16
+queue_timeout = 15.0
+request_timeout = 120.0

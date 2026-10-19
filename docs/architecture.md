@@ -85,3 +85,30 @@ The public response remains small; structured logs preserve the internal reason 
 ## V0.1 deployment boundary
 
 One gateway process talks to one vLLM HTTP server. Prometheus scrapes gateway metrics. The benchmark client is a separate process. No distributed state or orchestration layer is introduced in V0.1.
+
+## Current implementation mapping (pre-V0.1)
+
+- `servelab/app`: app factory and single-process CLI; TOML settings; request-ID middleware.
+- `servelab/api/responses.py`: one ASGI response owns generation, disconnect watching,
+  the absolute deadline, output writes, and cleanup. Delayed SSE headers preserve pre-token errors.
+- `servelab/core`: validated inputs, context/state transitions, bounded FIFO admission,
+  idempotent capacity leases, and single-backend selection.
+- `servelab/backends`: normalized `Token` / `End` events and deterministic mock. The adapter
+  stream is the primitive; the gateway aggregates it for non-streaming responses. Closing
+  the iterator forwards cooperative cancellation. Real vLLM behavior remains to be tested.
+- `servelab/observability`: per-app Prometheus registry and one prompt-free completion record.
+- `tests/unit` and `tests/integration`: lifecycle/admission checks, ASGI fault tests,
+  and actual localhost HTTP/SSE/disconnect tests.
+
+The vLLM HTTP adapter now consumes a pooled HTTPX stream and maps status, transport,
+timeout, generation, and protocol errors to stable gateway categories. It closes the HTTP
+response on cancellation and is tested against local protocol fixtures. Both public response
+modes use upstream streaming; non-streaming is aggregated at the gateway. Engine-side abort
+and real-model compatibility remain unverified. Settings choose one fixed backend at startup;
+dynamic capability negotiation is outside this slice.
+
+The benchmark runner uses bounded closed-loop client workers. It saves warm-up/measured
+rows, configuration, versions, and separate measurement windows. The offline report validates
+sample completeness and joins gateway logs by request ID without mixing host clocks.
+See [benchmark usage](benchmarking.md), [the API contract](local-development.md), and
+[the delivery plan](v0.1-execution-plan.md) for evidence and remaining cloud acceptance gates.
