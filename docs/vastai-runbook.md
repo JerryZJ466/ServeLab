@@ -1,9 +1,13 @@
-# Vast.ai validation plan: spending ceiling USD 5
+# Vast.ai planning record: spending ceiling USD 5
 
-Prepared on 2026-10-19. **No paid instance has been created and no GPU result exists.**
-This is a proposed single-GPU experiment, not a validated deployment recipe or a cost guarantee.
-Do not rent until the source is pushed, the selected offer's complete rates are reviewed,
-and a person is available to supervise export and cleanup in the same session.
+Historical plan prepared before rental on 2026-10-19. A user-created RTX 4090 instance
+has since passed JSON/SSE, the 576-request baseline and [15 reliability scenarios](verification/cloud-acceptance.md).
+Both evidence bundles are verified locally; the owner subsequently confirmed manual destruction. **Use the
+[actual deployment and evidence record](verification/cloud-baseline.md) for current commands.**
+The actual template was Vast's vLLM 0.30.0, not the proposed official 0.32.0 image below;
+its digest is unresolved, CPU allocation differs, and the gateway uses port 9000.
+The candidate pins and unexecuted instructions below are retained as planning history,
+not evidence that this candidate was deployed. Budget/export/cleanup rules still apply.
 
 ## 1. Fixed candidate stack
 

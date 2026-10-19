@@ -1,5 +1,38 @@
 # Curated observations
 
+## Real RTX 4090 baseline
+
+`qwen-4090-2026-10-19.json` is the unchanged report from clean-commit real-model run
+`9f5d69a6f5a644b4800af1d3f20beaec`: 576 measured requests, no measured failures, 72 excluded
+warm-ups and 576 gateway-log matches. It is separate from the mock run below. See
+[the cloud record](../../docs/verification/cloud-baseline.md) for software/model pins,
+configuration, raw hashes, deployment-image limitations and interpretation.
+
+Regenerate its figure in Ubuntu/WSL:
+
+```bash
+uv run --script scripts/plot_benchmark.py \
+  results/curated/qwen-4090-2026-10-19.json \
+  --output results/raw/replotted-qwen-4090
+```
+
+The downloaded raw bundle is local and ignored by Git. Recomputing its report locally
+produced byte-identical JSON; the public aggregate alone cannot independently recalculate
+percentiles. Means of repeat summaries are not pooled percentiles. This is a concurrency
+baseline, not a gateway-overhead measurement or an optimization speedup.
+
+## Real-engine reliability acceptance
+
+`qwen-4090-acceptance-2026-10-19.json` is a derived summary of a separate 15-case run,
+not throughput data. It preserves the historical clean gateway commit, the separately
+uploaded harness hash, control length, case results, engine/gateway counters, terminal
+counts and raw-evidence hashes. All 15 scenarios were followed by successful real recovery
+requests. See [the reliability record](../../docs/verification/cloud-acceptance.md) for
+the cancellation evidence, two retained failed harness attempts, scope and reproduction command.
+Full IDs/timestamps/logs remain in the locally backed-up, ignored raw archive.
+
+## CPU mock rehearsal
+
 `mock-rehearsal-2026-10-19.json` is an unchanged offline report from an actual CPU mock run,
 not GPU/model performance. It retains the original base commit and `dirty: true` provenance;
 publishing it later does not turn it into a clean-commit experiment.

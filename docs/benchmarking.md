@@ -75,7 +75,12 @@ Keep the benchmark client, gateway, and inference engine on the rented machine f
 main baseline. Start with JSON/SSE smokes before the full matrix. Record actual engine-side
 cancellation behavior; closing the gateway HTTP connection is not proof of immediate GPU release.
 Download and verify all evidence before ending the rental. No paid resources are created by
-these local scripts. Actual engine/model selection and deployment are still pending.
+these local scripts. The [2026-10-19 cloud baseline](verification/cloud-baseline.md) now
+records actual versions and measurements; separate [reliability acceptance](verification/cloud-acceptance.md)
+now records 15 passing cancellation, deadline and queue scenarios, with engine observations
+and recovery checks. These scenarios are not part of the throughput sample population.
+For that deployment, start ServeLab with
+`--port 9000`; `configs/benchmark.qwen.toml` targets that port.
 
 Reference contracts: [vLLM online serving](https://docs.vllm.ai/en/latest/serving/online_serving/),
 [vLLM streaming usage implementation](https://docs.vllm.ai/en/v0.31.0/api/vllm/entrypoints/openai/chat_completion/serving/),

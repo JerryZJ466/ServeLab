@@ -1,4 +1,5 @@
-# Planned cloud configuration; not yet validated against a real engine.
+# JSON and SSE validated with Qwen2.5-1.5B-Instruct / vLLM 0.30.0 on RTX 4090.
+# Launch this gateway with --port 9000 on the Vast template.
 backend = "vllm"
 model = "servelab-qwen"
 upstream_base_url = "http://127.0.0.1:8001"

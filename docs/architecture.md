@@ -95,7 +95,8 @@ One gateway process talks to one vLLM HTTP server. Prometheus scrapes gateway me
   idempotent capacity leases, and single-backend selection.
 - `servelab/backends`: normalized `Token` / `End` events and deterministic mock. The adapter
   stream is the primitive; the gateway aggregates it for non-streaming responses. Closing
-  the iterator forwards cooperative cancellation. Real vLLM behavior remains to be tested.
+  the iterator forwards cooperative cancellation. Real engine cleanup was corroborated in the
+  scoped [cloud acceptance](verification/cloud-acceptance.md), not inferred from connection closure alone.
 - `servelab/observability`: per-app Prometheus registry and one prompt-free completion record.
 - `tests/unit` and `tests/integration`: lifecycle/admission checks, ASGI fault tests,
   and actual localhost HTTP/SSE/disconnect tests.
@@ -103,12 +104,14 @@ One gateway process talks to one vLLM HTTP server. Prometheus scrapes gateway me
 The vLLM HTTP adapter now consumes a pooled HTTPX stream and maps status, transport,
 timeout, generation, and protocol errors to stable gateway categories. It closes the HTTP
 response on cancellation and is tested against local protocol fixtures. Both public response
-modes use upstream streaming; non-streaming is aggregated at the gateway. Engine-side abort
-and real-model compatibility remain unverified. Settings choose one fixed backend at startup;
+modes use upstream streaming; non-streaming is aggregated at the gateway. Real JSON/SSE
+compatibility, a repeated GPU baseline and 15 reliability scenarios have passed (see
+[baseline](verification/cloud-baseline.md) and [cleanup evidence/limits](verification/cloud-acceptance.md)).
+This does not establish exact GPU abort latency or immediate VRAM release. Settings choose one fixed backend at startup;
 dynamic capability negotiation is outside this slice.
 
 The benchmark runner uses bounded closed-loop client workers. It saves warm-up/measured
 rows, configuration, versions, and separate measurement windows. The offline report validates
 sample completeness and joins gateway logs by request ID without mixing host clocks.
 See [benchmark usage](benchmarking.md), [the API contract](local-development.md), and
-[the delivery plan](v0.1-execution-plan.md) for evidence and remaining cloud acceptance gates.
+[the delivery plan](v0.1-execution-plan.md) for evidence and remaining release gates.

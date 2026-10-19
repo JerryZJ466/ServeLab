@@ -1,5 +1,8 @@
 # Local integration and benchmark tooling evidence
 
+Historical CPU checkpoint. For later real-model results and current validation status,
+see the [evidence index](README.md). The source revisions and observations below are preserved.
+
 Observed on 2026-10-19 in Ubuntu/WSL, CPython 3.12.14 and uv 0.12.5.
 Base Git commit is `550a554`; implementation was uncommitted. This is a local working-tree
 verification record, not a tagged release, remote CI result, or real-model performance claim.

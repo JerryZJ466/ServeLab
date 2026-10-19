@@ -1,5 +1,6 @@
-# Planned short-prompt real-engine experiment. No GPU result exists yet.
-base_url = "http://127.0.0.1:8000"
+# Co-located short-prompt experiment; Vast's template proxy occupies port 8000.
+# Start ServeLab on port 9000 and the vLLM backend on port 8001.
+base_url = "http://127.0.0.1:9000"
 model = "servelab-qwen"
 concurrency = [1, 4, 8]
 repeats = 3

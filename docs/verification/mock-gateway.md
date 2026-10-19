@@ -1,5 +1,8 @@
 # Local mock gateway verification
 
+Historical CPU checkpoint. Later real-model compatibility and reliability results are
+indexed in the [evidence index](README.md); this record retains its original scope.
+
 Observed on 2026-10-19 in `/home/jerry/code/ServeLab`, Ubuntu 24.04 / WSL2.
 Base commit: `550a554`; gateway changes were **uncommitted** during this check.
 This document records local evidence, not a GitHub CI result or a real-model benchmark.

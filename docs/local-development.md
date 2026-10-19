@@ -108,7 +108,8 @@ operational signals; benchmark percentiles will be calculated offline from raw r
 - Schema/admission limits do not replace front-proxy body/connection limits.
 - `/healthz` is gateway liveness, not proof of external engine readiness.
 - Keep services on loopback; use SSH tunnels for future cloud access.
-- Mock cleanup is tested; real GPU-engine cancellation is not yet verified.
+- Mock cleanup is tested. Real-engine cleanup is corroborated only for the documented
+  [vLLM 0.30.0 cloud scenarios](verification/cloud-acceptance.md), not all engines/models.
 
 ## vLLM HTTP adapter (no local engine installation needed)
 
@@ -125,7 +126,9 @@ No retries or redirects. It checks upstream `/health` per admitted request; that
 is included in observed latency and must be kept constant in comparisons.
 
 Connection pools are bounded by `max_inflight` and closed at app shutdown. Closing an
-HTTP stream is tested locally, but must not be advertised as proven GPU-engine abort.
+HTTP stream is tested locally; connection closure alone is not proof of GPU-engine abort.
+The separate [cloud acceptance](verification/cloud-acceptance.md) checks engine activity,
+token counters and subsequent recovery in addition to gateway cleanup.
 Network-operation timeout maps to `backend_timeout` / 504 before headers. Upstream
 429/503 maps to `backend_overloaded` / 503; other upstream HTTP failures map to 502.
 Post-header failures still use the documented SSE error contract.

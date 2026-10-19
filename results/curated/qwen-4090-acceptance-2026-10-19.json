@@ -1,0 +1,598 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "run_id": "0707c5ff8b854d0c9c936df6fec7c286",
+  "created_at_utc": "2026-10-19T11:33:10.686523+00:00",
+  "git": {
+    "commit": "9755dfc69ab3aef5d13247e71455ad9da6d6430e",
+    "dirty": false
+  },
+  "script_sha256": "f05dbcf3c7f9380bc605a90e6ae0ff4c82462d5c8e410144f3992859689362b3",
+  "deployment_record": "docs/verification/cloud-baseline.md",
+  "model": "servelab-qwen",
+  "settings": {
+    "admission": {
+      "backend": "vllm",
+      "model": "servelab-qwen",
+      "max_inflight": 1,
+      "max_queue": 1,
+      "queue_timeout": 0.6,
+      "request_timeout": 30,
+      "mock_token_delay": 0.01,
+      "upstream_base_url": "http://127.0.0.1:8001",
+      "upstream_api_key_env": null
+    },
+    "deadline": {
+      "backend": "vllm",
+      "model": "servelab-qwen",
+      "max_inflight": 1,
+      "max_queue": 1,
+      "queue_timeout": 0.6,
+      "request_timeout": 0.25,
+      "mock_token_delay": 0.01,
+      "upstream_base_url": "http://127.0.0.1:8001",
+      "upstream_api_key_env": null
+    }
+  },
+  "control": {
+    "max_tokens": 1024,
+    "completion_tokens": 748,
+    "finish_reason": "stop",
+    "duration_seconds": 3.0908892434090376
+  },
+  "summary": {
+    "cases_passed": 15,
+    "recovery_requests_completed": 15,
+    "unique_terminal_records": 39,
+    "terminal_states": {
+      "CANCELLED": 12,
+      "COMPLETED": 15,
+      "REJECTED": 6,
+      "TIMED_OUT": 6
+    }
+  },
+  "cases": [
+    {
+      "case": "cancel_stream",
+      "repeat": 1,
+      "generated_tokens_before_interruption_observed": 14,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86357,
+        "abort": 0,
+        "stop": 9,
+        "length": 675,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "cancel_stream",
+      "repeat": 2,
+      "generated_tokens_before_interruption_observed": 14,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86379,
+        "abort": 0,
+        "stop": 9,
+        "length": 676,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "cancel_stream",
+      "repeat": 3,
+      "generated_tokens_before_interruption_observed": 14,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86401,
+        "abort": 0,
+        "stop": 9,
+        "length": 677,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "queue_limits",
+      "repeat": 1,
+      "generated_tokens_before_interruption_observed": 161,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86570,
+        "abort": 0,
+        "stop": 9,
+        "length": 678,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_full",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_timeout",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "queue_limits",
+      "repeat": 2,
+      "generated_tokens_before_interruption_observed": 162,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86740,
+        "abort": 0,
+        "stop": 9,
+        "length": 679,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_full",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_timeout",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "queue_limits",
+      "repeat": 3,
+      "generated_tokens_before_interruption_observed": 163,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86911,
+        "abort": 0,
+        "stop": 9,
+        "length": 680,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_full",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "REJECTED",
+          "status_code": 429,
+          "error_category": "queue_timeout",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "cancel_queued",
+      "repeat": 1,
+      "generated_tokens_before_interruption_observed": 42,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 86961,
+        "abort": 0,
+        "stop": 9,
+        "length": 681,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 499,
+          "error_category": "client_cancelled",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "cancel_queued",
+      "repeat": 2,
+      "generated_tokens_before_interruption_observed": 43,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87012,
+        "abort": 0,
+        "stop": 9,
+        "length": 682,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 499,
+          "error_category": "client_cancelled",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "cancel_queued",
+      "repeat": 3,
+      "generated_tokens_before_interruption_observed": 42,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87062,
+        "abort": 0,
+        "stop": 9,
+        "length": 683,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 499,
+          "error_category": "client_cancelled",
+          "was_admitted": false,
+          "first_token_observed": false
+        },
+        {
+          "terminal_state": "CANCELLED",
+          "status_code": 200,
+          "error_category": "client_cancelled",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_json",
+      "repeat": 1,
+      "generated_tokens_before_interruption_observed": 55,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87125,
+        "abort": 0,
+        "stop": 9,
+        "length": 684,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 504,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_json",
+      "repeat": 2,
+      "generated_tokens_before_interruption_observed": 57,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87190,
+        "abort": 0,
+        "stop": 9,
+        "length": 685,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 504,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_json",
+      "repeat": 3,
+      "generated_tokens_before_interruption_observed": 57,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87255,
+        "abort": 0,
+        "stop": 9,
+        "length": 686,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 504,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_stream",
+      "repeat": 1,
+      "generated_tokens_before_interruption_observed": 57,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87320,
+        "abort": 0,
+        "stop": 9,
+        "length": 687,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 200,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_stream",
+      "repeat": 2,
+      "generated_tokens_before_interruption_observed": 57,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87385,
+        "abort": 0,
+        "stop": 9,
+        "length": 688,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 200,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    },
+    {
+      "case": "deadline_stream",
+      "repeat": 3,
+      "generated_tokens_before_interruption_observed": 58,
+      "engine_active_observed": true,
+      "engine_after": {
+        "running": 0,
+        "waiting": 0,
+        "tokens": 87451,
+        "abort": 0,
+        "stop": 9,
+        "length": 689,
+        "error": 0
+      },
+      "gateway_after": {
+        "inflight": 0,
+        "queued": 0
+      },
+      "normal_finish_counter_delta": 0,
+      "error_counter_delta": 0,
+      "terminal_records": [
+        {
+          "terminal_state": "TIMED_OUT",
+          "status_code": 200,
+          "error_category": "deadline_exceeded",
+          "was_admitted": true,
+          "first_token_observed": true
+        }
+      ],
+      "recovery_state": "COMPLETED"
+    }
+  ],
+  "evidence_sha256": {
+    "archive": "407c90133ceecbb76120412299b1cf284e20b39b00e76496b802ca58feaaf557",
+    "acceptance_json": "dccf37d37dfc05e6f49dbd747804548f65466c2cff61972c9725ad4a787b91cf",
+    "admission_gateway_log": "b4b241a864fd82610be1ad223489a62bc2e3bfa1d0cddda11cf3c5df735e43f7",
+    "deadline_gateway_log": "11fbd4216d68a26040f10cacf55bf6da2ea90087385cd2596fbf2322329764bc"
+  },
+  "limitations": [
+    "Derived summary; complete per-request timestamps, IDs and logs are in the local Git-ignored archive.",
+    "One otherwise idle RTX 4090 engine, Qwen2.5-1.5B-Instruct, vLLM 0.30.0; not a general stress or soak test.",
+    "Token deltas include pre-cancellation work, not tokens generated after cancellation.",
+    "Engine gauges, token plateau, normal-finish counters and recovery corroborate cleanup; not exact GPU abort latency or immediate VRAM release.",
+    "External aborts need not increment vLLM's abort-labelled request_success counter.",
+    "Two failed harness attempts are preserved and explained in docs/verification/cloud-acceptance.md."
+  ]
+}

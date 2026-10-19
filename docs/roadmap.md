@@ -6,6 +6,10 @@ Current delivery commitment (2026-10-19): finish V0.1 with local CPU development
 by one cloud GPU validation stage. Later versions below are optional directions, not active
 work. See [the updated execution plan](v0.1-execution-plan.md).
 
+Current milestone: V0.1 core functional validation passed, with a 576-request real-model
+benchmark and 15 reliability scenarios. [Evidence and limitations](verification/README.md)
+are recorded separately from formal version/tag release status.
+
 ## V0.1 — single-backend serving loop
 
 Goal: make one request lifecycle correct and observable before adding distributed complexity.

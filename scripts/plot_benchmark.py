@@ -52,6 +52,22 @@ def validate_report(report):
     return sorted(groups, key=lambda group: (group["concurrency"], group["repeat"]))
 
 
+def annotate_repeat_means(axis, concurrencies, observations):
+    # Label the mean, but anchor above the highest repeat so dots/bands cannot cover it.
+    for concurrency, values in zip(concurrencies, observations, strict=True):
+        axis.annotate(
+            f"{mean(values):.1f}",
+            (concurrency, max(values)),
+            xytext=(0, 9),
+            textcoords="offset points",
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            zorder=5,
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9, "pad": 1.5},
+        )
+
+
 def plot_report(source: Path, destination: Path):
     raw = source.read_bytes()
     report = json.loads(raw)
@@ -106,15 +122,7 @@ def plot_report(source: Path, destination: Path):
             axis.plot(concurrencies, averages, color=color, linewidth=1.6)
             for c, values in zip(concurrencies, observations, strict=True):
                 axis.scatter([c] * len(values), values, color=color, s=25, zorder=3)
-            for c, value in zip(concurrencies, averages, strict=True):
-                axis.annotate(
-                    f"{value:.1f}",
-                    (c, value),
-                    xytext=(0, 12),
-                    textcoords="offset points",
-                    ha="center",
-                    fontsize=10,
-                )
+            annotate_repeat_means(axis, concurrencies, observations)
             axis.set(title=title, xlabel="Client concurrency", ylabel=unit, xticks=concurrencies)
             axis.set_ylim(0, max(max(values) for values in observations) * 1.3 or 1)
             axis.margins(x=0.12)
