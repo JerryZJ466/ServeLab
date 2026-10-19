@@ -61,7 +61,8 @@ The real-TCP rehearsal exercises the mock gateway and benchmark client, not GPU 
 1. Choose and verify a pinned engine/container/model/GPU combination and rental budget.
 2. Validate JSON/SSE and failure/cancellation behavior against the actual engine.
 3. Collect real repeated measurements with engine/GPU/model/launch metadata.
-4. Reproduce from committed source, run CI remotely, review limitations, and publish with approval.
+4. Review real-engine limitations and publish a release with approval. Clean-commit mock
+   reproduction and remote CPU CI are now verified below; GPU reproduction is still pending.
 
 No cloud resource, model download, commit, push, tag, or release was created by this batch.
 
@@ -86,3 +87,22 @@ is byte-identical to the original report (SHA-256
 The PNG was opened for visual inspection; labels, units and the synthetic-data warning are visible.
 The user authorized committing and pushing this local checkpoint after checks; no release tag
 or paid resource is included in that authorization.
+
+## Published checkpoint and clean-commit rerun
+
+Implementation commit `954e23783bc9b1d2b5c674cd54b72d7536bdfc6d` was pushed to `origin/main`
+on 2026-10-19. `git ls-remote` matched local HEAD and the working tree was clean.
+[GitHub Actions run 39238643144](https://github.com/JerryZJ466/ServeLab/actions/runs/39238643144)
+completed successfully, including `bash scripts/check.sh`. The local check immediately
+before publication also passed all 110 tests (6.51 s).
+
+The CPU rehearsal was then rerun from that clean commit:
+
+- Raw run: `results/raw/rehearsal-17bf53a0b64f4dd687ca4cd02107d35b/0ba7c81db5534da390789482310a9db0`.
+- Metadata: `status=complete`, Git commit `954e237...`, `dirty=false`, `measured_failures=0`.
+- Same 216 measured / 18 warm-up requests; the original historical figure snapshot is unchanged.
+- Request JSONL SHA-256: `c384d04481ab86c71fe4d419e5a32d0ec0eedd33e883fcbca93eac14e5e78833`.
+- Metadata SHA-256: `fb455864d59c3799e2ba582aa6d0ccd9fb07e3c7d8eb42d0aaa2a0ce7a09897b`.
+- Gateway log SHA-256: `37efb74a8d938ae8820af7bcb27732f1aef3c635a93c9e7bca4a036af34be608`.
+
+The raw rerun stays local/ignored. No paid instance, model download or release tag was created.

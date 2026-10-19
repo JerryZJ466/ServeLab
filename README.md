@@ -2,7 +2,10 @@
 
 ServeLab is a production-minded lab for learning and building LLM serving infrastructure. It starts as a small, observable gateway in front of one inference backend and grows toward multi-worker routing, SLO-aware control, trace replay, and reproducible systems experiments.
 
-> Status: local integration and benchmark tooling / pre-v0.1. The gateway, vLLM HTTP adapter, bounded admission, lifecycle handling, logs/metrics, and closed-loop benchmark/report tools are implemented and locally tested. Real vLLM/model compatibility, GPU cancellation behavior, cloud measurements, remote CI, and release remain unverified. Mock results are not model-inference performance results.
+> Status: local integration and benchmark tooling / pre-v0.1. The gateway, vLLM HTTP adapter, bounded admission, lifecycle handling, logs/metrics, and closed-loop benchmark/report tools are implemented and tested locally and in CPU CI. Real vLLM/model compatibility, GPU cancellation behavior, cloud measurements, and release remain unverified. Mock results are not model-inference performance results.
+
+Published implementation checkpoint: `954e237` — [CPU CI passed](https://github.com/JerryZJ466/ServeLab/actions/runs/39238643144),
+110 local tests passed, and the clean-commit mock rehearsal completed with no measured failures.
 
 ## Run locally (no GPU)
 
